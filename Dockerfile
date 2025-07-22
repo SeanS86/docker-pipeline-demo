@@ -1,15 +1,18 @@
-FROM python:3.9-slim
+FROM python:3.9.23-slim-bookworm
 
-# Set the working directory in the container
+# Working directory in the container
 WORKDIR /app
 
 COPY requirements.txt .
 
-# Installing dependencies
+# Installing  the dependencies
 RUN pip install --no-cache-dir -r requirements.txt
 
 # Copying other files
 COPY . .
 
-# To run the application
+# Exposing application port
+EXPOSE 8080
+
+# To start up the application
 CMD ["python", "main.py"]
