@@ -19,5 +19,6 @@ jobs:
           password: ${{ secrets.DOCKER_PASSWORD }}
       - name: Build and push the Docker image
         run: |
-          docker build . --file Dockerfile --tag ${{ secrets.DOCKER_USERNAME }}/py_bookstore-api:$(date +%s)
-          docker push ${{ secrets.DOCKER_USERNAME }}/py_bookstore-api:$(date +%s)
+          TIMESTAMP=$(date +%s)
+          docker build . --file Dockerfile --tag ${{ secrets.DOCKER_USERNAME }}/py_bookstore-api:$TIMESTAMP
+          docker push ${{ secrets.DOCKER_USERNAME }}/py_bookstore-api:$TIMESTAMP
