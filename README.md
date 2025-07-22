@@ -23,9 +23,19 @@ And to test and access the API, use a `curl` or a web browser. Some examples bel
 
 Replace `{book_id}` with the actual ID.
 
-## Code scanning and application scanning
+## Code scanning and dependency scanning
 
-Please note 
+Please note the host is no longer open to all interfaces (`0.0.0.0`) since `Bandit` flags this. 
+
+And the `Safety` dependency scan is set to `continue-on-error:true`. This is to make everyone aware of the vulnerabilities and resolve them or alternatively have a look at them later.
+
+```
+- name: Code Scanning with Safety
+  run: |
+    pip install safety
+    safety scan
+  continue-on-error: true
+```
 
 ## Bookstore API Config
 
