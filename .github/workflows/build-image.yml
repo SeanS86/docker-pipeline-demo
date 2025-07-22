@@ -34,26 +34,3 @@ jobs:
         run: |
           docker build . --file Dockerfile --tag ${{ secrets.DOCKER_USERNAME }}/py_bookstore-api:${{ env.COMMIT_HASH }}
           docker push ${{ secrets.DOCKER_USERNAME }}/py_bookstore-api:${{ env.COMMIT_HASH }}
-      - name: Trigger deployment workflows
-        uses: actions/trigger-workflow-and-wait@v1
-        with:
-          repo: ${{ github.repository }}
-          workflow_file_name: deploy-to-dev.yaml
-          ref: main
-          inputs: '{"COMMIT_HASH": "${{ env.COMMIT_HASH }}"}'
-      - name: Trigger staging deployment workflow
-        uses: actions/trigger-workflow-and-wait@v1
-        with:
-          repo: ${{ github.repository }}
-          workflow_file_name: deploy-to-staging.yaml
-          ref: main
-          inputs: '{"COMMIT_HASH": "${{ env.COMMIT_HASH }}"}'
-        if: github.ref == 'refs/heads/main'
-      - name: Trigger prod deployment workflow
-        uses: actions/trigger-workflow-and-wait@v1
-        with:
-          repo: ${{ github.repository }}
-          workflow_file_name: deploy-to-prod.yaml
-          ref: main
-          inputs: '{"COMMIT_HASH": "${{ env.COMMIT_HASH }}"}'
-        if: github.ref == 'refs/heads/main'
