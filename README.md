@@ -1,5 +1,5 @@
 # PY_Bookstore API App
-## How to run the application
+## How to run the application locally
 
 Firstly you have to build a Docker image for the application and run it as a container afterwards.
 
