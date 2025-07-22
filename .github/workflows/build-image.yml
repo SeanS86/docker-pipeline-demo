@@ -20,11 +20,11 @@ jobs:
       - name: Code Scanning with Bandit
         run: |
           pip install bandit
-          bandit -r . --exit-zero
+          bandit -r .
       - name: Code Scanning with Safety
         run: |
           pip install safety
-          safety check
+          safety check --full-report
       - name: Build and push the Docker image
         run: |
           TIMESTAMP=$(date +%s)
