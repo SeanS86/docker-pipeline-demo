@@ -13,7 +13,7 @@ DATABASE_URL    = os.environ.get("DATABASE_URL", "sqlite:///./books.db")
 LOG_LEVEL       = os.environ.get("LOG_LEVEL", "INFO").upper()
 PAGE_SIZE       = int(os.environ.get("PAGE_SIZE", "10"))
 APP_ENV         = os.environ.get("APP_ENV", "dev")
-HOST            = os.environ.get("HOST", "127.0.0.1")
+HOST            = os.environ.get("HOST", "0.0.0.0")
 PORT            = int(os.environ.get("PORT", "8080"))
 RELOAD          = os.environ.get("RELOAD", "False").lower() == "true"
 ALLOWED_ORIGINS = os.environ.get("ALLOWED_ORIGINS", "*").split(",")

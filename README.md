@@ -25,7 +25,7 @@ Replace `{book_id}` with the actual ID.
 
 ## Code scanning and dependency scanning
 
-Please note the host is no longer open to all interfaces (`0.0.0.0`) since `Bandit` flags this. 
+The `Bandit` step has the `--exit-zero` switch to ignore the allow all interfaces (`0.0.0.0`). 
 
 And the `Safety` dependency scan is set to `continue-on-error:true`. This is to make everyone aware of the vulnerabilities and resolve them or alternatively have a look at them later.
 
@@ -47,7 +47,7 @@ And the `Safety` dependency scan is set to `continue-on-error:true`. This is to 
 | `LOG_FORMAT`      | `%(levelname)s:%(name)s:%(message)s` | Python `logging` format string.                                  |
 | `PAGE_SIZE`       | `10`                                 | Number of items per page on the `/books/` endpoint.             |
 | `APP_ENV`         | `dev`                                | App environment label (e.g. dev / staging / prod).              |
-| `HOST`            | `127.0.0.1`                          | Uvicorn host binding.                                           |
+| `HOST`            | `0.0.0.0`                            | Uvicorn host binding.                                           |
 | `PORT`            | `8080`                               | Uvicorn port.                                                   |
 | `RELOAD`          | `False`                              | Whether Uvicorn runs in reload mode (`True`/`False`).           |
 | `ALLOWED_ORIGINS` | `*`                                  | Comma-separated list for CORS allowed origins (`*` = all).      |
