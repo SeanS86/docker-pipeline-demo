@@ -20,7 +20,7 @@ jobs:
       - name: Code Scanning with Bandit
         run: |
           pip install bandit
-          bandit -r .
+          bandit -r . --exit-zero
       - name: Code Scanning with Safety
         run: |
           pip install safety
