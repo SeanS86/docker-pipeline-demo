@@ -1,4 +1,4 @@
-name: Build and Push Image
+name: Image Build and Push
 
 on:
   push:
@@ -17,6 +17,15 @@ jobs:
         with:
           username: ${{ secrets.DOCKER_USERNAME }}
           password: ${{ secrets.DOCKER_PASSWORD }}
+      - name: Code Scanning with Bandit
+        run: |
+          pip install bandit
+          bandit -r . --exit-zero
+      - name: Dependency Scanning with Safety
+        run: |
+          pip install safety
+          safety scan
+        continue-on-error: true
       - name: Build and push the Docker image
         run: |
           TIMESTAMP=$(date +%s)
