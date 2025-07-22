@@ -1,0 +1,21 @@
+name: Deploy to Prod
+
+on:
+  workflow_dispatch:
+    inputs:
+      IMAGE_TAG:
+        description: 'Image tag to deploy'
+        required: true
+    branches:
+      - main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    environment: prod
+    steps:
+      - uses: helm/helm-action@v3
+        with:
+          helm-version: 'v3'
+          command: upgrade --install py-bookstore-api ./helm --set image.repository=${{ secrets.DOCKER_USERNAME }}/py_bookstore-api --set image.tag=${{ github.event.inputs.IMAGE_TAG }} --set appEnv=prod
+          kubeconfig: ${{ secrets.KUBE_CONFIG_PROD }}
