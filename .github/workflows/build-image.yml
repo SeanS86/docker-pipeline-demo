@@ -24,7 +24,7 @@ jobs:
       - name: Code Scanning with Safety
         run: |
           pip install safety
-          safety check --full-report
+          safety scan --full-report
       - name: Build and push the Docker image
         run: |
           TIMESTAMP=$(date +%s)
