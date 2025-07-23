@@ -1,10 +1,10 @@
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-  name: {{ .Values.appName | default "py-bookstore-api" }}-ingress
+  name: py-bookstore-api-ingress
 spec:
   rules:
-    - host: {{ .Values.ingress.host | default "example.com" }}
+    - host: {{ .Values.ingress.host }}
       http:
         paths:
           - path: /
@@ -13,4 +13,4 @@ spec:
               service:
                 name: {{ .Values.appName | default "py-bookstore-api" }}-service
                 port:
-                  number: {{ .Values.service.port }}
+                  number: 8080

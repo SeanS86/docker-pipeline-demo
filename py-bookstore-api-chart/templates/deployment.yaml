@@ -16,7 +16,7 @@ spec:
         - name: {{ .Values.appName | default "py-bookstore-api" }}
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
           ports:
-            - containerPort: {{ .Values.service.port }}
+            - containerPort: 8080
           env:
             - name: DATABASE_URL
               value: {{ .Values.env.DATABASE_URL }}

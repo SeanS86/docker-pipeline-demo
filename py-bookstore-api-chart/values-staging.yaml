@@ -1,15 +1,7 @@
-image:
-  repository: seans86/py_bookstore-api
-  tag: staging
-
 replicaCount: 2
 
-service:
-  type: ClusterIP
-  port: 8080
-
 ingress:
-  host: staging.py-bookstore-api.cloud
+  host: staging.py-bookstore-api
 
 env:
   DATABASE_URL: "sqlite:///./books.db"
