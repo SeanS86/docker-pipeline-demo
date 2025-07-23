@@ -12,9 +12,14 @@ jobs:
     runs-on: ubuntu-latest
     environment: dev
     steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
       - run: echo "Deploying from branch ${GITHUB_REF#refs/heads/}"
-      - uses: helm/helm-action@v3
-        with:
-          helm-version: 'v3'
-          command: upgrade --install py-bookstore-api ./helm --set image.repository=${{ secrets.DOCKER_USERNAME }}/py_bookstore-api --set image.tag=${{ github.event.inputs.IMAGE_TAG }}
-          kubeconfig: ${{ secrets.KUBE_CONFIG_DEV }}
+      - name: Install Helm
+        run: |
+          curl https://raw.githubusercontent.com/helm/helm/main/scripts/get-helm-3 | bash
+      - name: Run Helm upgrade
+        env:
+          KUBECONFIG: ${{ secrets.KUBE_CONFIG_DEV }}
+        run: |
+          helm upgrade --install py-bookstore-api ./helm --set image.repository=${{ secrets.DOCKER_USERNAME }}/py_bookstore-api --set image.tag=${{ github.event.inputs.IMAGE_TAG }}
