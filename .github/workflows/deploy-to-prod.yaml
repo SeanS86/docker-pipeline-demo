@@ -1,19 +1,22 @@
 name: Deploy to Prod
 
 on:
-  workflow_call:
+  workflow_dispatch:
     inputs:
       IMAGE_TAG:
         description: 'Image tag to deploy'
         required: true
-    branches:
-      - main
 
 jobs:
   deploy:
     runs-on: ubuntu-latest
     environment: prod
     steps:
+      - run: |
+          if [ "${GITHUB_REF}" != "refs/heads/main" ]; then
+            echo "This workflow can only be triggered on the main branch."
+            exit 1
+          fi
       - uses: helm/helm-action@v3
         with:
           helm-version: 'v3'
