@@ -12,6 +12,7 @@ jobs:
     runs-on: ubuntu-latest
     environment: dev
     steps:
+      - run: echo "Deploying from branch ${GITHUB_REF#refs/heads/}"
       - uses: helm/helm-action@v3
         with:
           helm-version: 'v3'

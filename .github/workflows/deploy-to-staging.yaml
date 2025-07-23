@@ -12,8 +12,9 @@ jobs:
     runs-on: ubuntu-latest
     environment: staging
     steps:
+      - run: echo "Deploying from branch ${GITHUB_REF#refs/heads/}"
       - uses: helm/helm-action@v3
         with:
           helm-version: 'v3'
-          command: upgrade --install py-bookstore-api ./helm --set image.repository=${{ secrets.DOCKER_USERNAME }}/py_bookstore-api --set image.tag=${{ github.event.inputs.IMAGE_TAG }} --set appEnv=staging
+          command: upgrade --install py-bookstore-api ./helm --set image.repository=${{ secrets.DOCKER_USERNAME }}/py_bookstore-api --set image.tag=${{ github.event.inputs.IMAGE_TAG }}
           kubeconfig: ${{ secrets.KUBE_CONFIG_STAGING }}
