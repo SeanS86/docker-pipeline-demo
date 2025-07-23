@@ -1,21 +1,17 @@
-image:
-  repository: seans86/py_bookstore-api
-  tag: prod
-
-replicaCount: 3
+replicaCount: 2
 
 service:
-  type: LoadBalancer
+  type: ClusterIP
   port: 8080
 
 ingress:
-  host: prod.py-bookstore-api.cloud
+  host: staging.py-bookstore-api.cloud
 
 env:
   DATABASE_URL: "sqlite:///./books.db"
   LOG_LEVEL: "INFO"
   PAGE_SIZE: 10
-  APP_ENV: "prod"
+  APP_ENV: "staging"
   HOST: "0.0.0.0"
   PORT: 8080
   RELOAD: "False"

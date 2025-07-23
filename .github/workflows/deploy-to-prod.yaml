@@ -26,4 +26,4 @@ jobs:
         env:
           KUBECONFIG: ${{ secrets.KUBE_CONFIG_PROD }}
         run: |
-          helm upgrade --install py-bookstore-api ./helm -f values-prod.yaml --set image.repository=${{ secrets.DOCKER_USERNAME }}/py_bookstore-api --set image.tag=${{ github.event.inputs.IMAGE_TAG }} --set appEnv=prod
+          helm upgrade --install py-bookstore-api ./py-bookstore-api-chart -f values-prod.yaml --set image.repository=${{ secrets.DOCKER_USERNAME }}/py_bookstore-api --set image.tag=${{ github.event.inputs.IMAGE_TAG }}
