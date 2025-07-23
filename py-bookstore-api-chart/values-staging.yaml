@@ -1,9 +1,5 @@
 replicaCount: 2
 
-service:
-  type: ClusterIP
-  port: 8080
-
 ingress:
   host: staging.py-bookstore-api.cloud
 

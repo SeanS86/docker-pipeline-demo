@@ -9,4 +9,4 @@ spec:
     - name: http
       port: 8080
       targetPort: 8080
-  type: {{ .Values.service.type | default "ClusterIP" }}
+  type: ClusterIP
