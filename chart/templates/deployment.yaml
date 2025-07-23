@@ -1,0 +1,40 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ .Values.appName | default "py-bookstore-api" }}
+spec:
+  replicas: {{ .Values.replicaCount }}
+  selector:
+    matchLabels:
+      app: {{ .Values.appName | default "py-bookstore-api" }}
+  template:
+    metadata:
+      labels:
+        app: {{ .Values.appName | default "py-bookstore-api" }}
+    spec:
+      containers:
+        - name: {{ .Values.appName | default "py-bookstore-api" }}
+          image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
+          ports:
+            - containerPort: {{ .Values.service.port }}
+          env:
+            - name: DATABASE_URL
+              value: {{ .Values.env.DATABASE_URL }}
+            - name: LOG_LEVEL
+              value: {{ .Values.env.LOG_LEVEL }}
+            - name: PAGE_SIZE
+              value: {{ .Values.env.PAGE_SIZE | quote }}
+            - name: APP_ENV
+              value: {{ .Values.env.APP_ENV }}
+            - name: HOST
+              value: {{ .Values.env.HOST }}
+            - name: PORT
+              value: {{ .Values.env.PORT | quote }}
+            - name: RELOAD
+              value: {{ .Values.env.RELOAD }}
+            - name: ALLOWED_ORIGINS
+              value: {{ .Values.env.ALLOWED_ORIGINS }}
+            - name: DB_POOL_SIZE
+              value: {{ .Values.env.DB_POOL_SIZE | quote }}
+            - name: DB_MAX_OVERFLOW
+              value: {{ .Values.env.DB_MAX_OVERFLOW | quote }}

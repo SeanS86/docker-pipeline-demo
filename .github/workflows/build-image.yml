@@ -26,8 +26,11 @@ jobs:
           pip install safety
           safety scan
         continue-on-error: true
+      - name: Get commit hash
+        run: |
+          COMMIT_HASH=$(git rev-parse --short HEAD)
+          echo "COMMIT_HASH=$COMMIT_HASH" >> $GITHUB_ENV
       - name: Build and push the Docker image
         run: |
-          TIMESTAMP=$(date +%s)
-          docker build . --file Dockerfile --tag ${{ secrets.DOCKER_USERNAME }}/py_bookstore-api:$TIMESTAMP
-          docker push ${{ secrets.DOCKER_USERNAME }}/py_bookstore-api:$TIMESTAMP
+          docker build . --file Dockerfile --tag ${{ secrets.DOCKER_USERNAME }}/py_bookstore-api:${{ env.COMMIT_HASH }}
+          docker push ${{ secrets.DOCKER_USERNAME }}/py_bookstore-api:${{ env.COMMIT_HASH }}
