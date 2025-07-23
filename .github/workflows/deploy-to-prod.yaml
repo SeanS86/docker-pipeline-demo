@@ -12,13 +12,18 @@ jobs:
     runs-on: ubuntu-latest
     environment: prod
     steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
       - run: |
           if [ "${GITHUB_REF}" != "refs/heads/main" ]; then
             echo "This workflow can only be triggered on the main branch."
             exit 1
           fi
-      - uses: helm/helm-action@v3
-        with:
-          helm-version: 'v3'
-          command: upgrade --install py-bookstore-api ./helm --set image.repository=${{ secrets.DOCKER_USERNAME }}/py_bookstore-api --set image.tag=${{ github.event.inputs.IMAGE_TAG }} --set appEnv=prod
-          kubeconfig: ${{ secrets.KUBE_CONFIG_PROD }}
+      - name: Install Helm
+        run: |
+          curl https://raw.githubusercontent.com/helm/helm/main/scripts/get-helm-3 | bash
+      - name: Run Helm upgrade
+        env:
+          KUBECONFIG: ${{ secrets.KUBE_CONFIG_PROD }}
+        run: |
+          helm upgrade --install py-bookstore-api ./helm -f values-prod.yaml --set image.repository=${{ secrets.DOCKER_USERNAME }}/py_bookstore-api --set image.tag=${{ github.event.inputs.IMAGE_TAG }} --set appEnv=prod

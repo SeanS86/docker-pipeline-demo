@@ -2,7 +2,7 @@ image:
   repository: seans86/py_bookstore-api
   tag: staging
 
-replicaCount: 1
+replicaCount: 2
 
 service:
   type: ClusterIP
