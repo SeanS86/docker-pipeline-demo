@@ -15,5 +15,5 @@ jobs:
       - uses: helm/helm-action@v3
         with:
           helm-version: 'v3'
-          command: upgrade --install py-bookstore-api ./helm --namespace staging --set image.repository=${{ secrets.DOCKER_USERNAME }}/py_bookstore-api --set image.tag=${{ github.event.inputs.IMAGE_TAG }} --set appEnv=staging
+          command: upgrade --install py-bookstore-api ./helm --set image.repository=${{ secrets.DOCKER_USERNAME }}/py_bookstore-api --set image.tag=${{ github.event.inputs.IMAGE_TAG }} --set appEnv=staging
           kubeconfig: ${{ secrets.KUBE_CONFIG_STAGING }}
