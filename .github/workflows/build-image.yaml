@@ -3,9 +3,7 @@ name: Image Build and Push
 on:
   push:
     branches:
-      - main
-      - feature/*
-      - '*'
+      - '**'
 
 jobs:
   build-and-push:
