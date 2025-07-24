@@ -1,7 +1,7 @@
 replicaCount: 1
 
 ingress:
-  host: dev.py-bookstore-api
+  host: dev.py-bookstore.api
 
 env:
   DATABASE_URL: "sqlite:///./books.db"
