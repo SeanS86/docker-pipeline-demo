@@ -28,4 +28,4 @@ jobs:
         env:
           KUBECONFIG: kubeconfig
         run: |
-          helm upgrade --install py-bookstore-api ./py-bookstore-api-chart -f values-dev.yaml --set image.repository=${{ secrets.DOCKER_USERNAME }}/py_bookstore-api --set image.tag=${{ github.event.inputs.IMAGE_TAG }}
+          helm upgrade --install py-bookstore-api ./py-bookstore-api-chart -f ./py-bookstore-api-chart/values-dev.yaml --set image.repository=${{ secrets.DOCKER_USERNAME }}/py_bookstore-api --set image.tag=${{ github.event.inputs.IMAGE_TAG }}
