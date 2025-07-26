@@ -22,8 +22,14 @@ jobs:
       - name: Install Helm
         run: |
           curl https://raw.githubusercontent.com/helm/helm/main/scripts/get-helm-3 | bash
+      - name: Create kubeconfig file
+        env:
+          KUBECONFIG_CONTENT: ${{ secrets.KUBE_CONFIG_DEV }}
+        run: |
+          echo "$KUBECONFIG_CONTENT" > kubeconfig
+          export KUBECONFIG=kubeconfig
       - name: Run Helm upgrade
         env:
-          KUBECONFIG: ${{ secrets.KUBE_CONFIG_PROD }}
+          KUBECONFIG: kubeconfig
         run: |
           helm upgrade --install py-bookstore-api ./py-bookstore-api-chart -f values-prod.yaml --set image.repository=${{ secrets.DOCKER_USERNAME }}/py_bookstore-api --set image.tag=${{ github.event.inputs.IMAGE_TAG }}
