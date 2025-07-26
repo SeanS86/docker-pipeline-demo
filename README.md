@@ -25,9 +25,10 @@ Replace `{book_id}` with the actual ID.
 
 ## Code and dependency scanning
 
-Please note that the scanning steps are in place for best practice however their results are suppressed when the pipeline runs as demonstrated below. 
+Please note that the scanning steps - during the build and push of the image workflow - are in place for best practice however their results are suppressed when the pipeline runs as demonstrated below.
+They're in place to create awareness regarding the quality of the code.
 
-The `Bandit` step has the `--exit-zero` switch to ignore the allow all interfaces (`0.0.0.0`). 
+The `Bandit` step has the `--exit-zero` switch to ignore the allow all interfaces (`0.0.0.0`).
 ```
       - name: Code Scanning with Bandit
         run: |
@@ -46,6 +47,9 @@ And the `Safety` dependency scan is set to `continue-on-error:true`.
 
 ## K8s deployment with Helm
 
+This is done via Github Actions workflows. And it works as flows:
+- The image gets built and pushed to the Dockerhub with each commit, with the commit Id as the tag.
+- And you can deploy any branch with any image tag in the `dev` and `staging` environments. However in `prod` you can only deploy the main branch with any tag.
 
 ## Bookstore API Config
 

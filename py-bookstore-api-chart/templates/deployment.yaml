@@ -31,9 +31,9 @@ spec:
             - name: PORT
               value: {{ .Values.env.PORT | quote }}
             - name: RELOAD
-              value: {{ .Values.env.RELOAD }}
+              value: {{ .Values.env.RELOAD | quote }}
             - name: ALLOWED_ORIGINS
-              value: {{ .Values.env.ALLOWED_ORIGINS }}
+              value: {{ .Values.env.ALLOWED_ORIGINS | quote}}
             - name: DB_POOL_SIZE
               value: {{ .Values.env.DB_POOL_SIZE | quote }}
             - name: DB_MAX_OVERFLOW
