@@ -19,7 +19,7 @@ And to test and access the API, use a `curl` or a web browser. Some examples bel
 
 **- Get a single book:** `http://localhost:8080/books/{book_id}`
 
-**- Create a new book:** `curl -X POST -H "Content-Type: application/json" -d '{"title": "Book Title", "author": "Author Name", "price": 10.99}' http://localhost:8080/books/`
+**- Create a new book:** `curl -X POST -H "Content-Type: application/json" -d '{"title": "My Demo", "author": "Sean S86", "price": 99.99}' http://localhost:8080/books/`
 
 Replace `{book_id}` with the actual ID.
 
@@ -50,6 +50,7 @@ And the `Safety` dependency scan is set to `continue-on-error:true`.
 This is done via Github Actions workflows. And it works as flows:
 - The image gets built and pushed to the Dockerhub with each commit, with the commit Id as the tag.
 - And you can deploy any branch with any image tag in the `dev` and `staging` environments. However in `prod` you can only deploy the main branch with any tag.
+- Deploying the image to Kubernetes is done via Helm. The image name and tag values are `--set` arguments in command while the namespace plus the cluster are specified in `kubeconfig` file. 
 
 ## Bookstore API Config
 
