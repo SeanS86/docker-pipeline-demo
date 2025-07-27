@@ -50,7 +50,7 @@ And the `Safety` dependency scan is set to `continue-on-error:true`.
 This is done via Github Actions workflows. And it works as flows:
 - The image gets built and pushed to the Dockerhub with each commit, with the commit Id as the tag.
 - And you can deploy any branch with any image tag in the `dev` and `staging` environments. However in `prod` you can only deploy the main branch with any tag.
-- Deploying the image to Kubernetes is done via Helm. The image name and tag values are `--set` arguments in command while the namespace plus the cluster are specified in kubeconfig file. 
+- Deploying the image to Kubernetes is done via Helm. The image name and tag values are `--set` arguments in command while the namespace plus the cluster are specified in `kubeconfig` file. 
 
 ## Bookstore API Config
 
