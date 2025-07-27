@@ -19,7 +19,7 @@ And to test and access the API, use a `curl` or a web browser. Some examples bel
 
 **- Get a single book:** `http://localhost:8080/books/{book_id}`
 
-**- Create a new book:** `curl -X POST -H "Content-Type: application/json" -d '{"title": "Book Title", "author": "Author Name", "price": 10.99}' http://localhost:8080/books/`
+**- Create a new book:** `curl -X POST -H "Content-Type: application/json" -d '{"title": "My Demo", "author": "Sean S86", "price": 99.99}' http://localhost:8080/books/`
 
 Replace `{book_id}` with the actual ID.
 
