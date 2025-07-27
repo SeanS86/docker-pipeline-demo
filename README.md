@@ -52,7 +52,7 @@ This is done via Github Actions workflows. And it works as flows:
 - And you can deploy any branch with any image tag in the `dev` and `staging` environments. However in `prod` you can only deploy the main branch with any tag.
 - Deploying the image to Kubernetes is done via Helm. The image name and tag values are `--set` arguments in command while the namespace plus the cluster are specified in `kubeconfig` file. 
 
-**Please note:** The deployment workflow are unsuccessful since there's no available K8s cluster. The `kubeconfig` file used here is from the local `KinD` cluster.
+**Please note:** The deployment workflows are unsuccessful since there's no available K8s cluster. The `kubeconfig` file used here is from the local `KinD` cluster.
 
 ## Bookstore API Config
 
