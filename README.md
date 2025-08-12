@@ -1,4 +1,6 @@
 # PY_Bookstore API App
+In this project we showcase how to "dockerize" a Python script exposing an API. And afterwards, we simulate a deployment onto Kubernetes using Helm.
+
 ## How to run the application locally
 
 Firstly you have to build a Docker image for the application and run it as a container afterwards.
